@@ -1,15 +1,15 @@
 CURRENT OPERATION:
     
     Customers journey;
-    1. User steps into coffee shop
+    1. customer steps into coffee shop
     2. scans QR Code from scan me card
-    3. Scan takes user to the online menu
-    4. User makes choice of pastry and drink
-    5. user informs the waiter
+    3. Scan takes customer to the online menu
+    4. customer makes choice of pastry and drink
+    5. customer informs the waiter
     6. Waiter takes order and generates bill from POS/cash register
-    7. User pays via cash or transfer to bank account given by waiter
-    8. waiter issues receipt to user generated from POS/cash register
-    8. user leaves
+    7. customer pays via cash or transfer to bank account given by waiter
+    8. waiter issues receipt to customer generated from POS/cash register
+    8. customer leaves
     
     Business Jouney;
     1. waiter takes order and inputes it into POS  / cash register
@@ -20,8 +20,8 @@ CURRENT OPERATION:
     6. watier gets all transacition details at the close of business from POS / cash register
 
     Data flow;
-    1. user order is inputed into the POS/Cahs register
-    2. POS/Cash Register stores the completed transaction with a unique industry
+    1. customer order is inputed into the POS/Cash register
+    2. POS/Cash Register stores the completed transaction with a unique id
     3. the waiter retreives the collated information from the POS/Cash register at the close of the day
 
 
@@ -39,6 +39,28 @@ SOLUTION:
         Bank Details QR code generator for customers.
     API backend- to integrate payment and QR code generator on the server side
 
+    Customer journey;
+    1. Customer steps in shop
+    2. customer scans QR cose from scan me card
+    3. scan me card takes customer to website
+    4. customer selects products and adds it to the cart
+    5. customer clicks checkout
+    6. customer is redirected to payment gateway
+    7. customer pays for the products
+    8. customer is redirected to the website
+    9. customer is shown the receipt
+
+    Businessjourney;
+    1. waiter confirms receipt from customers order
+    2. waiter serves 
+    3. waiter gets record of sales from payment merchant dashboard
+
+    Data flow;
+    1. customer inputs contact information on chekout form and initiates the payment process(name, email address, phone number)
+    2. payment service is initiated with customer details and total amount of products ordered
+    3, if card payment is selected customer inputs payment information at checkout(card number, expiry date, cvv whch is consumed by the payment gateway)
+    4. customer is redirected to the website calback
+    
  
 PROPOSED SOLUTION:
     
@@ -48,6 +70,11 @@ PROPOSED SOLUTION:
             2. Customer management
             3. dashboard system with analytics of the business.
             4. vendor management
+
+    Dataflow;
+    5. Post request is sent to API endpoint with details of customer, transaction status, transaction refereence, and time stamp.
+    6. The API stores the record to the database. 
+
 
 
 
