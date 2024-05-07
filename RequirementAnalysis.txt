@@ -1,25 +1,52 @@
 CURRENT OPERATION:
+    
+    Customers journey;
     1. User steps into coffee shop
     2. scans QR Code from scan me card
     3. Scan takes user to the online menu
     4. User makes choice of pastry and drink
     5. user informs the waiter
-    6. Waiter takes order and generates bill from POS machine/cash register
+    6. Waiter takes order and generates bill from POS/cash register
     7. User pays via cash or transfer to bank account given by waiter
-    8. waiter issues receipt to user generated from POS machine/cash register
+    8. waiter issues receipt to user generated from POS/cash register
     8. user leaves
+    
+    Business Jouney;
+    1. waiter takes order and inputes it into POS  / cash register
+    2. waiter collects and/or confirms payment (depending on payment method, cash or bank transfer)
+    3. POS/ cash rgeister stores details of transaction information
+    4. waiter generates receipt from POS/cash register
+    5. waiter serves customer
+    6. watier gets all transacition details at the close of business from POS / cash register
+
+    Data flow;
+    1. user order is inputed into the POS/Cahs register
+    2. POS/Cash Register stores the completed transaction with a unique industry
+    3. the waiter retreives the collated information from the POS/Cash register at the close of the day
 
 
 PROBLEM DOMAIN:
+    
     The website - only lists out the products available and cost 
-    the waiter - still takes the order and inputes it to cash register/POS and issues receipt
+    the waiter - still takes the order and payment inputs it to cash register/POS and issues receipt
 
 
 SOLUTION:
-    the website - a fully functional website that can list products wih proper checkout and payment
+    
+    the website - a fully functional website that can list products with proper checkout and payment processing
     Payment solution - payment gateway and Bank Details QR code generator for customers.
     API backend- to integrate payment and QR code generator on the server side
 
 
 PROPOSED SOLUTION:
+    
     Admin panel - a panel to add products and manage them also manage the bank details to be generated for the customer payment.
+
+
+
+S. M. A. R. T. 
+S Specific
+M Measureable 
+A Attainable
+R Relevant
+T Timely
