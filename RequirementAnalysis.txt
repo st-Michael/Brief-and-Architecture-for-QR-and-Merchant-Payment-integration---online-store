@@ -41,6 +41,11 @@ SOLUTION:
 PROPOSED SOLUTION:
     
     Admin panel - a panel to add products and manage them also manage the bank details to be generated for the customer payment.
+        Extra features could include;
+            1. inventory management with alert and notification system.
+            2. Customer management
+            3. dashboard system with analytics of the business.
+            4. vendor management
 
 
 
