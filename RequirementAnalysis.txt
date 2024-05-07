@@ -34,10 +34,12 @@ PROBLEM DOMAIN:
 SOLUTION:
     
     the website - a fully functional website that can list products with proper checkout and payment processing
-    Payment solution - payment gateway and Bank Details QR code generator for customers.
+    Payment solution - 
+        payment gateway and 
+        Bank Details QR code generator for customers.
     API backend- to integrate payment and QR code generator on the server side
 
-
+ 
 PROPOSED SOLUTION:
     
     Admin panel - a panel to add products and manage them also manage the bank details to be generated for the customer payment.
