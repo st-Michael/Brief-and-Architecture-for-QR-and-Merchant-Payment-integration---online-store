@@ -1,0 +1,3 @@
+generate a software engineering brief for a business that needs a payment gateway integration and a QR-based payment for their business, 
+cape cove is a coffee and pastry shop with an online menu for their customers to be able to make their requests, they need their website to be able to receive the payment for each item purchased. 
+they need the customers to be able to either make a direct payment from the menu via a payment gateway using their card or any other available means provided by the payment merchant or generate a QR code containing the bank details  for direct transfer to the  business's direct  bank account

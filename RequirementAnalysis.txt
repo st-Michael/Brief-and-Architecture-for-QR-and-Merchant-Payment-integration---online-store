@@ -1,0 +1,25 @@
+CURRENT OPERATION:
+    1. User steps into coffee shop
+    2. scans QR Code from scan me card
+    3. Scan takes user to the online menu
+    4. User makes choice of pastry and drink
+    5. user informs the waiter
+    6. Waiter takes order and generates bill from POS machine/cash register
+    7. User pays via cash or transfer to bank account given by waiter
+    8. waiter issues receipt to user generated from POS machine/cash register
+    8. user leaves
+
+
+PROBLEM DOMAIN:
+    The website - only lists out the products available and cost 
+    the waiter - still takes the order and inputes it to cash register/POS and issues receipt
+
+
+SOLUTION:
+    the website - a fully functional website that can list products wih proper checkout and payment
+    Payment solution - payment gateway and Bank Details QR code generator for customers.
+    API backend- to integrate payment and QR code generator on the server side
+
+
+PROPOSED SOLUTION:
+    Admin panel - a panel to add products and manage them also manage the bank details to be generated for the customer payment.
