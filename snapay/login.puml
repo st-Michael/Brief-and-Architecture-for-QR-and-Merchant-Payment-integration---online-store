@@ -22,6 +22,7 @@ actor User <<(U, LightGreen)>>
 boundary "Snapay Mobile App" as UI
 participant "Snapay API" as API <<(A, LightBlue)>>
 control "Auth Service" as AuthService <<(S, LightBlue)>>
+control "Auth Service" as redis <<(R, Red)>>
 database "Snapay Database" as Database <<(D, SkyBlue)>>
 
 User -> UI : Sign up button
@@ -46,7 +47,8 @@ UI -> API : POST /auth/signin
         UI -> UI  : Display login successful message
         UI -> UI : Redirect to Dashboard
         note left : if user is a merchant redirect to merchant dashboard
-        Database -> API : User data
+        Database -> redis : User data
+        redis -> API : User data
         API -> UI  : User data
     end
 @enduml
