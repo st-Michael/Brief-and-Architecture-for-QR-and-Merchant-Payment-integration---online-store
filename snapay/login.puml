@@ -22,18 +22,17 @@ actor User <<(U, LightGreen)>>
 boundary "Snapay Mobile App" as UI
 participant "Snapay API" as API <<(A, LightBlue)>>
 control "Auth Service" as AuthService <<(S, LightBlue)>>
-control "Auth Service" as redis <<(R, Red)>>
+control "Redis Service" as redis <<(R, Red)>>
 database "Snapay Database" as Database <<(D, SkyBlue)>>
 
-User -> UI : Sign up button
-note left : New User
-UI -> UI  : Display Sign-up Screen
+User -> UI : Login button
+UI -> UI  : Display Login Screen
 User -> UI : Enters Email/Phone and password.
 UI -> API : POST /auth/signin
         API -> AuthService : very login
         AuthService -> Database : verify login
-    alt#green #LightSalmon Authentication Success
-         loop#Green  Authentication Failure
+    alt#yellow #LightSalmon Authentication Success
+         loop#yellow  Authentication Failure
             Database -> AuthService  : Record not found
             AuthService -> API : Authentication failed
             API -> UI : 401 Unauthorized - Authentication failed
@@ -47,8 +46,8 @@ UI -> API : POST /auth/signin
         UI -> UI  : Display login successful message
         UI -> UI : Redirect to Dashboard
         note left : if user is a merchant redirect to merchant dashboard
-        Database -> redis : User data
-        redis -> API : User data
-        API -> UI  : User data
+        Database -> redis : User data and session cookie
+        redis -> API : User data and session cookie
+        API -> UI  : User data and session cookie
     end
 @enduml

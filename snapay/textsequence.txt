@@ -25,11 +25,14 @@ merchant and custmer login
     if user is a merchant is redirected to the merchant dashboard
 
 merchant/cumtomer wallet creation
-
+Create Merchant store
 marcharnt QR code generation  
+funding your wallet
 customer payment 
+withdrawing from wallet
 
 ENTITY RELATION DIAGRAM;
 users  schema (All users - merchants, customers and admins)
 merchant schema 
 merhant store schema
+wallet schema
