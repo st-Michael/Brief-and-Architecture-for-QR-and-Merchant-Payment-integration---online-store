@@ -1,0 +1,51 @@
+@startuml
+autonumber
+
+title Snapay Login Cusomer and Merchant
+
+header
+    User Action: Initiating a POST request to the '/process-order' endpoint
+endheader
+
+caption Login Workflow
+
+
+skinparam NoteBackgroundColor #LightGrey
+skinparam TitleBackgroundColor #Pink
+skinparam ParticipantBackgroundColor #Orange
+skinparam ActorBackgroundColor #Orange
+skinparam DatabaseBackgroundColor #Purple
+skinparam BoundaryBackgroundColor #LightGreen
+skinparam ControlBackgroundColor #Yellow
+
+actor User <<(U, LightGreen)>>
+boundary "Snapay Mobile App" as UI
+participant "Snapay API" as API <<(A, LightBlue)>>
+control "Auth Service" as AuthService <<(S, LightBlue)>>
+database "Snapay Database" as Database <<(D, SkyBlue)>>
+
+User -> UI : Sign up button
+note left : New User
+UI -> UI  : Display Sign-up Screen
+User -> UI : Enters Email/Phone and password.
+UI -> API : POST /auth/signin
+        API -> AuthService : very login
+        AuthService -> Database : verify login
+    alt#green #LightSalmon Authentication Success
+         loop#Green  Authentication Failure
+            Database -> AuthService  : Record not found
+            AuthService -> API : Authentication failed
+            API -> UI : 401 Unauthorized - Authentication failed
+            UI -> UI  : Display error message (Invalid credentials)
+            User -> UI : retypes detands    
+        end
+    else #LightGreen
+        Database -> AuthService : Success
+        AuthService -> API: Success
+        API -> UI : 200 OK - Authentication successful
+        UI -> UI  : Display login successful message
+        UI -> UI : Redirect to Dashboard
+        Database -> API : User data
+        API -> UI  : User data
+    end
+@enduml

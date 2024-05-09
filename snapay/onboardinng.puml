@@ -8,7 +8,7 @@ header
     User Action: Initiating a POST request to the '/process-order' endpoint
 endheader
 
-caption Order Processing Workflow
+caption Sign Up Workflow
 
 
 skinparam NoteBackgroundColor #White
@@ -29,19 +29,21 @@ User -> UI : Sign up button
 note left : New User
 UI -> UI  : Display Sign-up Screen
 User -> UI : Enters Email or Pnone No.
-    alt#Green #PaleGreen Check if email or Phone exists
-    UI -> API : POST /auth
-        API -> AuthService: check email/phone exist
-        AuthService -> Database: record exists?
-        loop#green #LightSalmon while email and password wrong
+UI -> API : POST /auth
+API -> AuthService: check email/phone exist
+AuthService -> Database: record exists?
+    alt#Green #LightSalmon Check if email or Phone exists
+        loop#green  while email and password wrong
             Database --> AuthService: already exsts
             AuthService -> API : Already exist
             API -> UI : Error message - already exist
             UI ->  UI : Already exist use andother
             User -> UI : Enters another email
             UI -> API : POST /auth
+            API -> AuthService: check email/phone exist
+            AuthService -> Database: record exists?
         end
-    
+    else #PaleGreen
         Database --> AuthService: Doesn't exst
         AuthService -> API : Doesn't exist
         API -> UI : Proceed with Account creation
