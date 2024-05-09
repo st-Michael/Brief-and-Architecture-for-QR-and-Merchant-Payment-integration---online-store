@@ -1,0 +1,35 @@
+COMPONENT DIAGRAM
+
+SEQUENCE DIAGRAM:
+onboarding users (merchants and customers) 
+    new user launches the applicaion
+    user inputs email or phone number
+    email/phone number is verified 
+        if the phone/email  exist 
+            returns message - user exists
+        else the user creates new password and select accout type 
+            if user is a customer 
+                create accont and return success message
+                redirect user to customer dashboard
+            else 
+                input business details (business type, location, etc)
+                create account and return success message
+                redirect user to merchant dashboard
+            
+
+merchant and custmer login 
+    user intereacts with the applicaions 
+    user is redirected to the login page 
+    user enters the email and password 
+    user is redirected to the dashboard 
+    if user is a merchant is redirected to the merchant dashboard
+
+merchant/cumtomer wallet creation
+
+marcharnt QR code generation  
+customer payment 
+
+ENTITY RELATION DIAGRAM;
+users  schema (All users - merchants, customers and admins)
+merchant schema 
+merhant store schema

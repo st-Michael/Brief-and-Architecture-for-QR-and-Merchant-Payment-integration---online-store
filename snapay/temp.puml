@@ -1,0 +1,31 @@
+@startuml
+actor User
+boundary UserInterface
+control TaskManager
+entity TaskList
+database TaskDatabase
+collections TaskQueue
+
+User -> UserInterface: Log in
+UserInterface -> TaskManager: Request Task List
+TaskManager -> TaskList: Retrieve Tasks
+TaskList --> TaskManager: Tasks
+TaskManager -> UserInterface: Display Tasks
+UserInterface -> User: Display Task List
+User -> UserInterface: Add New Task
+UserInterface -> TaskManager: Add Task
+TaskManager -> TaskValidator: Validate Task
+TaskValidator --> TaskManager: Validated Task
+TaskManager -> TaskList: Add Task
+TaskList -> TaskDatabase: Save Task
+TaskDatabase -> TaskManager: Task Saved
+TaskManager -> TaskQueue: Send Notification
+TaskQueue -> User: Task Added Confirmation
+User -> UserInterface: Mark Task as Completed
+UserInterface -> TaskManager: Complete Task
+TaskManager -> TaskList: Update Task Status
+TaskList -> TaskDatabase: Remove Task
+TaskDatabase -> TaskManager: Task Removed
+TaskManager -> TaskQueue: Send Notification
+TaskQueue -> User: Task Completed Confirmation
+@enduml

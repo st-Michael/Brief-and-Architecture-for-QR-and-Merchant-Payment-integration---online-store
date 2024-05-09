@@ -1,0 +1,35 @@
+@startuml
+
+autonumber
+
+title Process Order Details
+
+header
+    User Action: Initiating a POST request to the '/process-order' endpoint
+endheader
+
+caption Order Processing Workflow
+
+
+skinparam NoteBackgroundColor #White
+skinparam TitleBackgroundColor #Yellow
+skinparam ParticipantBackgroundColor #LightBlue
+skinparam ActorBackgroundColor #Orange
+skinparam DatabaseBackgroundColor #Violet
+
+
+actor customer <<(C, LightGreen)>>
+participant "Order Processing Service" as orderService <<(S, LightGreen) Internal Service>>
+entity "Order Processor" as orderProcessor <<(E, Yellow)>>
+database "Order Database" as orderDatabase <<(D, Violet)>>
+
+
+loop#Green for each item in the order
+    note left : Processing item
+    alt#Green #PaleGreen item found = true
+        note left : Item processed successfully
+    else #LightSalmon else
+        note left : Error processing item
+    end
+end
+@enduml

@@ -1,0 +1,73 @@
+@startuml
+
+autonumber
+
+title Snapay Onboarding Cusomer and Merchant
+
+header
+    User Action: Initiating a POST request to the '/process-order' endpoint
+endheader
+
+caption Order Processing Workflow
+
+
+skinparam NoteBackgroundColor #White
+skinparam TitleBackgroundColor #Pink
+skinparam ParticipantBackgroundColor #Orange
+skinparam ActorBackgroundColor #Orange
+skinparam DatabaseBackgroundColor #Purple
+skinparam BoundaryBackgroundColor #LightGreen
+skinparam ControlBackgroundColor #Yellow
+
+actor User <<(U, LightGreen)>>
+boundary "Snapay Mobile App" as UI
+participant "Snapay API" as API <<(A, LightBlue)>>
+control "Auth Service" as AuthService <<(S, LightBlue)>>
+database "Snapay Database" as Database <<(D, SkyBlue)>>
+
+User -> UI : Sign up button
+note left : New User
+UI -> UI  : Display Sign-up Screen
+User -> UI : Enters Email or Pnone No.
+    alt#Green #PaleGreen Check if email or Phone exists
+    UI -> API : POST /auth
+        API -> AuthService: check email/phone exist
+        AuthService -> Database: record exists?
+        loop#green #LightSalmon while email and password wrong
+            Database --> AuthService: already exsts
+            AuthService -> API : Already exist
+            API -> UI : Error message - already exist
+            UI ->  UI : Already exist use andother
+            User -> UI : Enters another email
+            UI -> API : POST /auth
+        end
+    
+        Database --> AuthService: Doesn't exst
+        AuthService -> API : Doesn't exist
+        API -> UI : Proceed with Account creation
+        UI ->  UI : Display form
+        User -> UI : Selects Merchant or Customer
+        note left : enters other details
+        alt#Green #Lightblue if User is a Merchant
+            UI -> UI : Display special form for merchant
+            User -> UI : Enters Merchant details
+        end
+        UI -> UI : Display Password and Confirm Password
+        User -> UI : Enters Password
+        
+        loop#green #SkyBlue Form input not state 
+            UI -> UI : Display error message
+            User -> UI : Enters correct details
+        end
+        UI -> API : POST /auth
+        note left : All form fields are correct
+        API -> AuthService: create account
+        AuthService -> Database: create account
+        Database --> AuthService: Account created
+        AuthService -> API : Account created
+        API -> UI : Account created
+        UI -> UI : Display success message
+        UI -> User : Display success message
+    end
+
+@enduml
