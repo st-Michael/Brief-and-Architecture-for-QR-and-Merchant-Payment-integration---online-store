@@ -45,6 +45,7 @@ UI -> API : POST /auth/signin
         API -> UI : 200 OK - Authentication successful
         UI -> UI  : Display login successful message
         UI -> UI : Redirect to Dashboard
+        note left : if user is a merchant redirect to merchant dashboard
         Database -> API : User data
         API -> UI  : User data
     end
