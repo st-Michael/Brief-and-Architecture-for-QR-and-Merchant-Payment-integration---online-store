@@ -1,4 +1,4 @@
-@startuml
+@startuml login
 autonumber
 
 title Snapay Login Cusomer and Merchant

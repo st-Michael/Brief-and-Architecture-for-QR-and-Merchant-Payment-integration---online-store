@@ -1,4 +1,4 @@
-@startuml
+@startuml Onboarding
 
 autonumber
 
@@ -32,8 +32,8 @@ User -> UI : Enters Email or Pnone No.
 UI -> API : POST /auth
 API -> AuthService: check email/phone exist
 AuthService -> Database: record exists?
-    alt#Green #LightSalmon Check if email or Phone exists
-        loop#green  while email and password wrong
+    alt#Yellow #LightSalmon Check if email or Phone exists
+        loop#Yellow  while email and password wrong
             Database --> AuthService: already exsts
             AuthService -> API : Already exist
             API -> UI : Error message - already exist
@@ -50,14 +50,14 @@ AuthService -> Database: record exists?
         UI ->  UI : Display form
         User -> UI : Selects Merchant or Customer
         note left : enters other details
-        alt#Green #Lightblue if User is a Merchant
+        alt#Yellow #Lightblue if User is a Merchant
             UI -> UI : Display special form for merchant
             User -> UI : Enters Merchant details
         end
         UI -> UI : Display Password and Confirm Password
         User -> UI : Enters Password
         
-        loop#green #SkyBlue Form input not state 
+        loop#Yellow #Salmon Form input not state 
             UI -> UI : Display error message
             User -> UI : Enters correct details
         end
